@@ -112,7 +112,7 @@ qrCodeRouter.route("/insert_tag").post(function (req, res) {
       error: "Validation Error.",
       message: "Can't search because no lot_no provided",
     });
-    gen_group = moment().format('YYYYMMDDHHmmss')
+  gen_group = moment().format("YYYYMMDDHHmmss");
   new sql.ConnectionPool(config)
     .connect()
     .then((pool) => {
@@ -133,7 +133,7 @@ qrCodeRouter.route("/insert_tag").post(function (req, res) {
     .then((result) => {
       let rows = result.recordset;
       res.setHeader("Access-Control-Allow-Origin", "*");
-      res.status(200).json(rows);
+      res.status(200).json(gen_group);
       sql.close();
     })
     .catch((err) => {
