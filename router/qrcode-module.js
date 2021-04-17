@@ -135,11 +135,6 @@ qrCodeRouter
         error: "Validation Error.",
         message: "Can't search because no p_unit provided",
       });
-    if (!remark)
-      return res.status(400).json({
-        error: "Validation Error.",
-        message: "Can't search because no remark provided",
-      });
     if (!doc_no)
       return res.status(400).json({
         error: "Validation Error.",
@@ -246,11 +241,6 @@ qrCodeRouter.route("/insert_tag").post(async function (req, res) {
     return res.status(400).json({
       error: "Validation Error.",
       message: "Can't search because no p_unit provided",
-    });
-  if (!remark)
-    return res.status(400).json({
-      error: "Validation Error.",
-      message: "Can't search because no remark provided",
     });
   if (!doc_no)
     return res.status(400).json({
