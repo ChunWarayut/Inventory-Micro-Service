@@ -26,11 +26,10 @@ const config = {
   },
 };
 
-
 function sleep(delay = 0) {
-    return new Promise((resolve) => {
-        setTimeout(resolve, delay);
-    });
+  return new Promise((resolve) => {
+    setTimeout(resolve, delay);
+  });
 }
 
 async function insertData(res, params) {
@@ -120,51 +119,64 @@ qrCodeRouter
       lot_no,
       qrcode,
     } = req.body;
-    if (!ms_id)
-      return res.status(400).json({
-        error: "Validation Error.",
-        message: "Can't search because no ms_id provided",
-      });
-    if (!quantity)
-      return res.status(400).json({
-        error: "Validation Error.",
-        message: "Can't search because no quantity provided",
-      });
-    if (!p_unit)
-      return res.status(400).json({
-        error: "Validation Error.",
-        message: "Can't search because no p_unit provided",
-      });
-    if (!doc_no)
-      return res.status(400).json({
-        error: "Validation Error.",
-        message: "Can't search because no doc_no provided",
-      });
-    if (!rec_date)
-      return res.status(400).json({
-        error: "Validation Error.",
-        message: "Can't search because no rec_date provided",
-      });
-    if (!Tag_Type)
-      return res.status(400).json({
-        error: "Validation Error.",
-        message: "Can't search because no Tag_Type provided",
-      });
-    if (!Updated_By)
-      return res.status(400).json({
-        error: "Validation Error.",
-        message: "Can't search because no Updated_By provided",
-      });
-    if (!lot_no)
-      return res.status(400).json({
-        error: "Validation Error.",
-        message: "Can't search because no lot_no provided",
-      });
-    if (!qrcode)
-      return res.status(400).json({
-        error: "Validation Error.",
-        message: "Can't search because no qrcode provided",
-      });
+    if (Tag_Type === "pallet") {
+      console.log("pallet");
+      ms_id = null;
+      quantity = null;
+      p_unit = null;
+      doc_no = null;
+      rec_date = null;
+      Tag_Type = null;
+      Updated_By = null;
+      lot_no = null;
+    } else {
+      console.log("not pallet");
+      if (!ms_id)
+        return res.status(400).json({
+          error: "Validation Error.",
+          message: "Can't search because no ms_id provided",
+        });
+      if (!quantity)
+        return res.status(400).json({
+          error: "Validation Error.",
+          message: "Can't search because no quantity provided",
+        });
+      if (!p_unit)
+        return res.status(400).json({
+          error: "Validation Error.",
+          message: "Can't search because no p_unit provided",
+        });
+      if (!doc_no)
+        return res.status(400).json({
+          error: "Validation Error.",
+          message: "Can't search because no doc_no provided",
+        });
+      if (!rec_date)
+        return res.status(400).json({
+          error: "Validation Error.",
+          message: "Can't search because no rec_date provided",
+        });
+      if (!Tag_Type)
+        return res.status(400).json({
+          error: "Validation Error.",
+          message: "Can't search because no Tag_Type provided",
+        });
+      if (!Updated_By)
+        return res.status(400).json({
+          error: "Validation Error.",
+          message: "Can't search because no Updated_By provided",
+        });
+      if (!lot_no)
+        return res.status(400).json({
+          error: "Validation Error.",
+          message: "Can't search because no lot_no provided",
+        });
+      if (!qrcode)
+        return res.status(400).json({
+          error: "Validation Error.",
+          message: "Can't search because no qrcode provided",
+        });
+    }
     gen_group = moment().format("YYYYMMDDHHmmss");
     const data = {
       gen_group,
@@ -227,51 +239,62 @@ qrCodeRouter.route("/insert_tag").post(async function (req, res) {
     lot_no,
     qrcode,
   } = req.body;
-  if (!ms_id)
-    return res.status(400).json({
-      error: "Validation Error.",
-      message: "Can't search because no ms_id provided",
-    });
-  if (!quantity)
-    return res.status(400).json({
-      error: "Validation Error.",
-      message: "Can't search because no quantity provided",
-    });
-  if (!p_unit)
-    return res.status(400).json({
-      error: "Validation Error.",
-      message: "Can't search because no p_unit provided",
-    });
-  if (!doc_no)
-    return res.status(400).json({
-      error: "Validation Error.",
-      message: "Can't search because no doc_no provided",
-    });
-  if (!rec_date)
-    return res.status(400).json({
-      error: "Validation Error.",
-      message: "Can't search because no rec_date provided",
-    });
-  if (!Tag_Type)
-    return res.status(400).json({
-      error: "Validation Error.",
-      message: "Can't search because no Tag_Type provided",
-    });
-  if (!Updated_By)
-    return res.status(400).json({
-      error: "Validation Error.",
-      message: "Can't search because no Updated_By provided",
-    });
-  if (!lot_no)
-    return res.status(400).json({
-      error: "Validation Error.",
-      message: "Can't search because no lot_no provided",
-    });
-  if (!qrcode)
-    return res.status(400).json({
-      error: "Validation Error.",
-      message: "Can't search because no qrcode provided",
-    });
+  if (Tag_Type === "pallet") {
+    ms_id = null;
+    quantity = null;
+    p_unit = null;
+    doc_no = null;
+    rec_date = null;
+    Tag_Type = null;
+    Updated_By = null;
+    lot_no = null;
+  } else {
+    if (!ms_id)
+      return res.status(400).json({
+        error: "Validation Error.",
+        message: "Can't search because no ms_id provided",
+      });
+    if (!quantity)
+      return res.status(400).json({
+        error: "Validation Error.",
+        message: "Can't search because no quantity provided",
+      });
+    if (!p_unit)
+      return res.status(400).json({
+        error: "Validation Error.",
+        message: "Can't search because no p_unit provided",
+      });
+    if (!doc_no)
+      return res.status(400).json({
+        error: "Validation Error.",
+        message: "Can't search because no doc_no provided",
+      });
+    if (!rec_date)
+      return res.status(400).json({
+        error: "Validation Error.",
+        message: "Can't search because no rec_date provided",
+      });
+    if (!Tag_Type)
+      return res.status(400).json({
+        error: "Validation Error.",
+        message: "Can't search because no Tag_Type provided",
+      });
+    if (!Updated_By)
+      return res.status(400).json({
+        error: "Validation Error.",
+        message: "Can't search because no Updated_By provided",
+      });
+    if (!lot_no)
+      return res.status(400).json({
+        error: "Validation Error.",
+        message: "Can't search because no lot_no provided",
+      });
+    if (!qrcode)
+      return res.status(400).json({
+        error: "Validation Error.",
+        message: "Can't search because no qrcode provided",
+      });
+  }
   gen_group = moment().format("YYYYMMDDHHmmss");
   const data = {
     gen_group,

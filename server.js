@@ -20,6 +20,9 @@ app.options("*", cors());
 app.get("/", function (req, res) {
   res.json({ message: "Welcome To Inventory Micro Service 1.0.0" });
 });
+app.get("/health-check", function (req, res) {
+  res.json({ message: "1.0.0" });
+});
 
 app.use("/api", [inventoryRouter, qrCodeRouter]);
 
