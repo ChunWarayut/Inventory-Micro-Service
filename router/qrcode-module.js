@@ -126,7 +126,6 @@ qrCodeRouter
       p_unit = null;
       doc_no = null;
       rec_date = null;
-      Tag_Type = null;
       Updated_By = null;
       lot_no = null;
     } else {
@@ -245,7 +244,6 @@ qrCodeRouter.route("/insert_tag").post(async function (req, res) {
     p_unit = null;
     doc_no = null;
     rec_date = null;
-    Tag_Type = null;
     Updated_By = null;
     lot_no = null;
   } else {
