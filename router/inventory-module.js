@@ -24,7 +24,7 @@ const config = {
 };
 
 inventoryRouter.route("/").get(function (req, res) {
-  return res.json({ message: "Welcome To Inventory Micro Service 1.0.0" });
+  return res.json({ message: "Welcome To Inventory Micro Service 1.0.1" });
 });
 
 inventoryRouter.route("/login").post(function (req, res) {
