@@ -3,6 +3,7 @@ var bodyParser = require("body-parser");
 
 var inventoryRouter = require("./router/inventory-module");
 var qrCodeRouter = require("./router/qrcode-module");
+var receiveRouter = require("./router/receive-module");
 var app = express();
 var cors = require("cors");
 
@@ -24,7 +25,7 @@ app.get("/health-check", function (req, res) {
   res.json({ message: "1.0.1" });
 });
 
-app.use("/api", [inventoryRouter, qrCodeRouter]);
+app.use("/api", [inventoryRouter, qrCodeRouter, receiveRouter]);
 
 app.use(function (req, res, error) {
   res.end("Page not found");
