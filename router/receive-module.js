@@ -90,6 +90,12 @@ receiveRouter.route("/scan-barcode-work").post(async function (req, res) {
       message: "กรุณา..ตรวจสอบบาร์โค๊ต บาร์โค๊ตไม่ถูกต้อง !!!",
     });
   }
+  if (_selectBarcodeItem[0].Tag_Type.toUpperCase() === 'PALLET') {
+    return res.status(400).json({
+      error: "Validation Error.",
+      message: "กรุณา..ตรวจสอบบาร์โค๊ต บาร์โค๊ตไม่ถูกต้อง !!!",
+    });
+  }
   successResponse(res, _selectBarcodeItem);
 });
 
