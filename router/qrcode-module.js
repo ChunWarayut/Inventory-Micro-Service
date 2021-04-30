@@ -13,9 +13,9 @@ qrCodeRouter.use(
 const config = {
   user: "itech",
   password: "P@ssw0rd",
-  server: "sme.fortiddns.com",
+  server: "1.179.203.226",
   database: "NTN_DB",
-  port: 14330,
+  port: 1444,
   pool: {
     max: 0,
     min: 0,
