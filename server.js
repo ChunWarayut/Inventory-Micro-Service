@@ -19,7 +19,7 @@ app.use(cors());
 app.options("*", cors());
 
 app.get("/", function (req, res) {
-  res.json({ message: "Welcome To Inventory Micro Service 1.0.1" });
+  res.json({ message: "Welcome To Inventory Micro Service 1.0.1 " + process.env.VER });
 });
 app.get("/health-check", function (req, res) {
   res.json({ message: "1.0.1" });
