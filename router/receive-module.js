@@ -1,4 +1,5 @@
 var express = require("express");
+const { config } = require("../config");
 var receiveRouter = express.Router();
 var sql = require("mssql");
 var bodyParser = require("body-parser");
@@ -10,21 +11,6 @@ receiveRouter.use(
     extended: true,
   })
 );
-const config = {
-  user: "itech",
-  password: "P@ssw0rd",
-  server: "1.179.203.226",
-  database: "NTN_DB",
-  port: 1444,
-  pool: {
-    max: 0,
-    min: 0,
-    idleTimeoutMillis: 30000,
-  },
-  options: {
-    encrypt: false,
-  },
-};
 
 function sleep(delay = 0) {
   return new Promise((resolve) => {
@@ -136,6 +122,40 @@ receiveRouter.route("/scan-barcode-pallet").post(async function (req, res) {
     });
   }
   successResponse(res, _selectBarcodePallet);
+});
+
+receiveRouter.route("/stock-tr-rack").post(function (req, res) {
+  var { barcode, store, product } = req.body;
+  if (!barcode)
+    return res.status(400).json({
+      error: "Validation Error.",
+      message: "Can't search because no barcode provided",
+    });
+  if (!store)
+    return res.status(400).json({
+      error: "Validation Error.",
+      message: "Can't search because no store provided",
+    });
+  if (!product)
+    return res.status(400).json({
+      error: "Validation Error.",
+      message: "Can't search because no product provided",
+    });
+  var queryStr = `SELECT top 1  * FROM [dbo].[fn_stock_tr_rack] (${barcode}, ${store}, ${product}) order by  rn`;
+  new sql.ConnectionPool(config)
+    .connect()
+    .then((pool) => {
+      return pool.request().query(queryStr);
+    })
+    .then((result) => {
+      let rows = result.recordset;
+      successResponse(res, rows);
+      sql.close();
+    })
+    .catch((err) => {
+      sql.close();
+      ErrorResponse(res, err.message);
+    });
 });
 
 module.exports = receiveRouter;

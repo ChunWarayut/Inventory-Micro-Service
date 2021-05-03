@@ -1,4 +1,5 @@
 var express = require("express");
+const { config } = require("../config");
 var inventoryRouter = express.Router();
 var sql = require("mssql");
 var bodyParser = require("body-parser");
@@ -7,21 +8,6 @@ inventoryRouter.use(
     extended: true,
   })
 );
-const config = {
-  user: "itech",
-  password: "P@ssw0rd",
-  server: "1.179.203.226",
-  database: "NTN_DB",
-  port: 1444,
-  pool: {
-    max: 0,
-    min: 0,
-    idleTimeoutMillis: 30000,
-  },
-  options: {
-    encrypt: false,
-  },
-};
 
 inventoryRouter.route("/").get(function (req, res) {
   return res.json({ message: "Welcome To Inventory Micro Service 1.0.1" });
