@@ -149,6 +149,12 @@ receiveRouter.route("/stock-tr-rack").post(function (req, res) {
     })
     .then((result) => {
       let rows = result.recordset;
+      if (rows.length === 0) {
+        return res.status(400).json({
+          error: "Validation Error.",
+          message: "กรุณา..ตรวจสอบ คลังสินค้า.เนื่องจากคลังสินค้าเต็มแล้ว !!",
+        });
+      }
       successResponse(res, rows);
       sql.close();
     })
